@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería | Smile Depot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FCFDFD;
+    --card: #D8D9DD;
+    --primary: #3B7DB8;
+    --primary-deep: #1F4E73;
+    --ink: #0E2A3D;
+    --cta: #028E3D;
+    --muted: #6B7280;
+    --sand: #F3F0E9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  em { font-style: italic; color: var(--primary); }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 56px;
+    background: rgba(252, 253, 253, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(14, 42, 61, 0.08);
+  }
+  .logo-fallback {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  nav { display: flex; align-items: center; gap: 40px; }
+  nav a {
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 14.5px;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  nav a.active { color: var(--primary-deep); }
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1.5px;
+    background: var(--primary);
+    transition: width 0.25s ease;
+  }
+  nav a:hover::after, nav a.active::after { width: 100%; }
+
+  .btn-cta {
+    background: var(--cta);
+    color: #fff;
+    padding: 12px 26px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14.5px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(2, 142, 61, 0.25); }
+
+  .header-right { display: flex; align-items: center; gap: 20px; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+  .hamburger span {
+    width: 22px; height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 78px; left: 0; right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid rgba(14,42,61,0.08);
+    padding: 12px 24px 24px;
+    z-index: 49;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(14,42,61,0.06);
+  }
+
+  /* ---------- PAGE HERO ---------- */
+  .page-hero {
+    padding: 70px 56px 40px;
+    max-width: 900px;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--primary-deep);
+    margin-bottom: 20px;
+  }
+  .eyebrow::before { content: ''; width: 22px; height: 1.5px; background: var(--cta); }
+  .page-hero h1 { font-size: 42px; line-height: 1.15; margin-bottom: 16px; }
+  .page-hero p { color: var(--muted); font-size: 16.5px; max-width: 520px; }
+
+  /* ---------- GALLERY GRID ---------- */
+  .gallery-section { padding: 20px 56px 100px; }
+  .gallery-head {
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+  .gallery-head h2 {
+    font-size: 34px;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .gallery-head p { color: var(--muted); font-size: 16.5px; max-width: 520px; }
+  .gallery-masonry {
+    max-width: 1200px;
+    margin: 0 auto;
+    columns: 3;
+    column-gap: 20px;
+  }
+  .g-thumb {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: var(--card);
+    aspect-ratio: 4/5;
+  }
+  .g-thumb:nth-child(2) { aspect-ratio: 4/3; }
+  .g-thumb:nth-child(5) { aspect-ratio: 4/3; }
+  .g-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .g-thumb .placeholder-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 13px;
+  }
+  .g-thumb:hover img { transform: scale(1.05); }
+  .g-thumb .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(14,42,61,0.55) 0%, rgba(14,42,61,0) 45%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px;
+  }
+  .g-thumb:hover .overlay { opacity: 1; }
+  .g-thumb .overlay span { color: #fff; font-size: 13.5px; font-weight: 500; }
+
+  /* ---------- LIGHTBOX ---------- */
+  #lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(14, 42, 61, 0.92);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  #lightbox .lb-image-wrap {
+    max-width: 900px;
+    width: 100%;
+    max-height: 80vh;
+    aspect-ratio: 4/3;
+    background: var(--card);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 14px;
+    overflow: hidden;
+  }
+  #lightbox .lb-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  #lightbox .lb-caption { color: #E7ECF0; text-align: center; margin-top: 16px; font-size: 14px; }
+  .lb-close {
+    position: absolute; top: 28px; right: 40px;
+    background: none; border: none;
+    color: #fff; font-size: 30px;
+    cursor: pointer;
+  }
+  .lb-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .lb-arrow:hover { background: rgba(255,255,255,0.2); }
+  .lb-prev { left: 24px; }
+  .lb-next { right: 24px; }
+
+  /* ---------- NOSOTROS ---------- */
+  .nosotros-wrap { background: var(--sand); padding: 40px 56px 100px; }
+  .nosotros {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .nosotros-photo {
+    aspect-ratio: 4/5;
+    background: var(--card);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 14px;
+  }
+  .nosotros-text h2 { font-size: 32px; margin-bottom: 18px; }
+  .nosotros-text p { color: var(--muted); font-size: 16px; margin-bottom: 16px; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 40px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(14,42,61,0.08);
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+
+  /* ---------- MODAL ---------- */
+  #contact-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 42, 61, 0.55);
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+  }
+  .modal-box {
+    background: var(--bg);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-box h3 { font-size: 24px; margin-bottom: 6px; }
+  .modal-box .sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    padding: 12px 14px;
+    border: 1px solid rgba(14,42,61,0.15);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  .contact-form textarea { min-height: 100px; resize: vertical; }
+  .contact-form .btn-cta { width: 100%; margin-top: 4px; }
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 90;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s ease;
+  }
+  .whatsapp-float:hover { transform: scale(1.08); }
+  .whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    header { padding: 18px 24px; }
+    nav { display: none; }
+    .hamburger { display: flex; }
+    .page-hero { padding: 50px 24px 30px; }
+    .page-hero h1 { font-size: 32px; }
+    .gallery-section { padding: 10px 24px 70px; }
+    .gallery-head h2 { font-size: 28px; }
+    .gallery-masonry { columns: 2; }
+    .nosotros { grid-template-columns: 1fr; padding: 0; }
+    .nosotros-wrap { padding: 60px 24px; }
+    .lb-arrow { width: 38px; height: 38px; font-size: 16px; }
+    .lb-prev { left: 8px; } .lb-next { right: 8px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .whatsapp-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+  }
+
+  @media (max-width: 560px) {
+    .gallery-masonry { columns: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-fallback">Smile Depot</div>
+  <nav>
+    <a href="galeria.html" class="active">Galería</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="index.html">Inicio</a>
+  </nav>
+  <div class="header-right">
+    <button class="btn-cta" type="button" onclick="openModal()">Agendar cita</button>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Inicio</a>
+  <a href="galeria.html">Galería</a>
+  <a href="servicios.html">Servicios</a>
+</div>
+
+<section class="page-hero">
+  <div class="eyebrow">Nosotros</div>
+  <h1>Un equipo comprometido con <em>tu sonrisa</em></h1>
+  <p>Conoce al equipo y la filosofía detrás de Smile Depot — precisión clínica con la calidez de Cozumel.</p>
+</section>
+
+<div class="nosotros-wrap">
+  <div class="nosotros">
+    <div class="nosotros-photo">[Foto del doctor / equipo]</div>
+    <div class="nosotros-text">
+      <h2>Smile Depot en Cozumel</h2>
+      <p>[Texto pendiente — breve historia de la clínica y del equipo.]</p>
+      <p>[Texto pendiente — filosofía de atención al paciente.]</p>
+    </div>
+  </div>
+</div>
+
+<section class="gallery-section">
+  <div class="gallery-head">
+    <div class="eyebrow">Galería</div>
+    <h2>Un vistazo dentro de <em>nuestra clínica</em></h2>
+    <p>Instalaciones modernas, equipo de última generación y un espacio pensado para que te sientas en confianza.</p>
+  </div>
+  <div class="gallery-masonry" id="gallery">
+    <div class="g-thumb" data-index="0">
+      <div class="placeholder-label">[Foto 1]</div>
+      <div class="overlay"><span>Recepción</span></div>
+    </div>
+    <div class="g-thumb" data-index="1">
+      <div class="placeholder-label">[Foto 2]</div>
+      <div class="overlay"><span>Consultorio</span></div>
+    </div>
+    <div class="g-thumb" data-index="2">
+      <div class="placeholder-label">[Foto 3]</div>
+      <div class="overlay"><span>Equipo dental</span></div>
+    </div>
+    <div class="g-thumb" data-index="3">
+      <div class="placeholder-label">[Foto 4]</div>
+      <div class="overlay"><span>Sala de espera</span></div>
+    </div>
+    <div class="g-thumb" data-index="4">
+      <div class="placeholder-label">[Foto 5]</div>
+      <div class="overlay"><span>Área de esterilización</span></div>
+    </div>
+    <div class="g-thumb" data-index="5">
+      <div class="placeholder-label">[Foto 6]</div>
+      <div class="overlay"><span>Consultorio 2</span></div>
+    </div>
+  </div>
+</section>
+
+<div id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">&times;</button>
+  <button class="lb-arrow lb-prev" onclick="navigateLightbox(-1)">&larr;</button>
+  <div class="lb-image-wrap" id="lbImageWrap">[Foto ampliada]</div>
+  <button class="lb-arrow lb-next" onclick="navigateLightbox(1)">&rarr;</button>
+</div>
+
+<footer>
+  <span>© 2026 Smile Depot</span>
+  <span>Cozumel, Quintana Roo, México</span>
+</footer>
+
+<div id="contact-modal">
+  <div class="modal-box">
+    <button class="modal-close" type="button" onclick="closeModal()" aria-label="Cerrar">&times;</button>
+    <h3>Agendar cita</h3>
+    <p class="sub">Completa el formulario y te contactaremos pronto.</p>
+    <form class="contact-form" id="contact-form">
+      <label>Nombre<input type="text" id="cf-name" name="name" required autocomplete="name"></label>
+      <label>Teléfono<input type="tel" id="cf-phone" name="phone" required autocomplete="tel"></label>
+      <label>Email<input type="email" id="cf-email" name="email" autocomplete="email"></label>
+      <label>Mensaje<textarea id="cf-message" name="message" required placeholder="¿En qué podemos ayudarte?"></textarea></label>
+      <button type="submit" class="btn-cta">Enviar solicitud</button>
+    </form>
+  </div>
+</div>
+
+<a class="whatsapp-float" href="https://wa.me/529871045499" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  function openModal() { document.getElementById('contact-modal').style.display = 'flex'; }
+  function closeModal() { document.getElementById('contact-modal').style.display = 'none'; }
+
+  document.getElementById('contact-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'contact-modal') closeModal();
+  });
+
+  document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cf-name').value.trim();
+    const phone = document.getElementById('cf-phone').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+    const text = encodeURIComponent(
+      'Hola, me gustaría agendar una cita.\n\n' +
+      'Nombre: ' + name + '\n' +
+      'Teléfono: ' + phone + '\n' +
+      (email ? 'Email: ' + email + '\n' : '') +
+      '\nMensaje: ' + message
+    );
+    window.open('https://wa.me/529871045499?text=' + text, '_blank');
+    closeModal();
+    e.target.reset();
+  });
+
+  const captions = ['Recepción', 'Consultorio', 'Equipo dental', 'Sala de espera', 'Área de esterilización', 'Consultorio 2'];
+  let currentIndex = 0;
+
+  document.querySelectorAll('.g-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      currentIndex = parseInt(thumb.dataset.index);
+      openLightbox();
+    });
+  });
+
+  function openLightbox() {
+    document.getElementById('lightbox').style.display = 'flex';
+    updateLightbox();
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+  function navigateLightbox(dir) {
+    currentIndex = (currentIndex + dir + captions.length) % captions.length;
+    updateLightbox();
+  }
+  function updateLightbox() {
+    document.getElementById('lbImageWrap').textContent = '[Foto ' + (currentIndex + 1) + ']';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (document.getElementById('lightbox').style.display === 'flex') {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+      return;
+    }
+    if (e.key === 'Escape') closeModal();
+  });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>
