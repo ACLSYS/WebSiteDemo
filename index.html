@@ -1,569 +1,1782 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smile Depot — Odontología Premium en Cozumel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #FBFAF7;
-    --ink: #0B2B3C;
-    --ink-soft: #52707D;
-    --teal: #147A8C;
-    --teal-deep: #0C4C58;
-    --teal-pale: #E4EFEF;
-    --palm: #1C6B4F;
-    --palm-deep: #14513C;
-    --sand: #EFE6D4;
-    --sand-deep: #E4D5B8;
-    --gold: #C89B3C;
-    --line: rgba(11,43,60,0.10);
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Smile Depot — Odontología Premium en Cozumel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* Paleta: #2F78A8 · #0B99F0 · #937B6F  (+ neutros derivados) */
+      --bg: #FAF7F5;
+      --ink: #12293A;
+      --ink-soft: #62594F;
+      --blue: #2F78A8;
+      --blue-deep: #1F5679;
+      --blue-pale: rgba(47, 120, 168, 0.10);
+      --cta: #2F78A8;
+      --cta-deep: #1F5679;
+      --sky: #0B99F0;
+      --sand: #EEE7E2;
+      --sand-deep: #E0D5CD;
+      --brown: #937B6F;
+      --line: rgba(18, 41, 58, 0.10);
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  h1, h2, h3 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-  }
-  em { font-style: italic; color: var(--teal); font-weight: 400; }
-  a { color: inherit; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* ---------- TIDELINE (signature divider) ---------- */
-  .tideline { width: 100%; height: 56px; display: block; }
-  .tideline path { fill: none; stroke-width: 1.4; }
+    h1,
+    h2,
+    h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
 
-  /* ---------- HEADER ---------- */
-  header {
-    position: sticky; top: 0; z-index: 50;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 22px 56px;
-    background: rgba(251, 250, 247, 0.86);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-  }
-  .logo {
-    font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500;
-    display: flex; align-items: baseline; gap: 2px;
-  }
-  .logo em { font-style: italic; }
-  nav { display: flex; align-items: center; gap: 38px; }
-  nav a {
-    text-decoration: none; color: var(--ink); font-weight: 500; font-size: 14.5px;
-    position: relative; padding-bottom: 4px;
-  }
-  nav a.active { color: var(--teal-deep); }
-  nav a::after {
-    content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1.5px;
-    background: var(--gold); transition: width 0.25s ease;
-  }
-  nav a:hover::after, nav a.active::after { width: 100%; }
+    em {
+      font-style: italic;
+      color: var(--blue);
+      font-weight: 400;
+    }
 
-  .btn-cta {
-    background: var(--palm); color: #fff; padding: 12px 26px; border-radius: 100px;
-    text-decoration: none; font-weight: 500; font-size: 14.5px; border: none; cursor: pointer;
-    box-shadow: 0 4px 14px rgba(28,107,79,0.22);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  }
-  .btn-cta:hover { transform: translateY(-1px); background: var(--palm-deep); box-shadow: 0 10px 24px rgba(28,107,79,0.28); }
+    a {
+      color: inherit;
+    }
 
-  .header-right { display: flex; align-items: center; gap: 20px; }
-  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
-  .hamburger span { width: 22px; height: 1.5px; background: var(--ink); transition: transform 0.25s ease, opacity 0.25s ease; }
-  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--sky);
+      outline-offset: 3px;
+    }
 
-  .mobile-nav {
-    display: none; flex-direction: column; position: fixed; top: 78px; left: 0; right: 0;
-    background: var(--bg); border-bottom: 1px solid var(--line); padding: 12px 24px 24px; z-index: 49;
-  }
-  .mobile-nav.open { display: flex; }
-  .mobile-nav a { text-decoration: none; color: var(--ink); font-size: 16px; font-weight: 500; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    /* ---------- TIDELINE ---------- */
+    .tideline {
+      width: 100%;
+      height: 56px;
+      display: block;
+    }
 
-  /* ---------- REVEAL ---------- */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.in { opacity: 1; transform: translateY(0); }
+    .tideline path {
+      fill: none;
+      stroke-width: 1.4;
+    }
 
-  /* ---------- PHOTO TILE (signature placeholder system) ---------- */
-  .photo-tile {
-    position: relative; overflow: hidden; border-radius: 20px;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(20,122,140,0.16), transparent 55%),
-      radial-gradient(circle at 80% 75%, rgba(200,155,60,0.14), transparent 50%),
-      var(--sand);
-  }
-  .photo-tile::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      repeating-radial-gradient(circle at 30% 30%, transparent 0, transparent 18px, rgba(11,43,60,0.045) 19px, transparent 20px),
-      repeating-radial-gradient(circle at 75% 70%, transparent 0, transparent 26px, rgba(11,43,60,0.04) 27px, transparent 28px);
-  }
-  .photo-tile .tile-caption {
-    position: absolute; left: 16px; bottom: 16px;
-    display: flex; align-items: center; gap: 8px;
-    background: rgba(251,250,247,0.92); padding: 8px 14px; border-radius: 100px;
-    font-size: 12.5px; font-weight: 500; color: var(--ink-soft);
-    box-shadow: 0 6px 16px rgba(11,43,60,0.08);
-  }
-  .photo-tile .tile-caption .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    /* ---------- HEADER ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 56px;
+      background: rgba(250, 247, 245, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
 
-  /* Tile con imagen real: oculta la textura de puntos y usa la foto como fondo */
-  .photo-tile.has-image {
-    background-image: linear-gradient(rgba(11,43,60,0.02), rgba(11,43,60,0.02)), var(--tile-img);
-    background-size: cover;
-    background-position: center;
-  }
-  .photo-tile.has-image::before { display: none; }
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 500;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
 
-  /* ---------- 01 HERO ---------- */
-  .hero {
-    display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 48px;
-    padding: 90px 56px 70px; max-width: 1300px; margin: 0 auto;
-  }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-deep); margin-bottom: 22px;
-  }
-  .eyebrow::before { content: ''; width: 22px; height: 1.5px; background: var(--gold); }
-  .hero h1 { font-size: 54px; line-height: 1.1; margin-bottom: 22px; }
-  .hero p.lead { font-size: 18px; color: var(--ink-soft); max-width: 460px; margin-bottom: 34px; }
-  .hero-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-  .btn-ghost { font-size: 14.5px; font-weight: 500; text-decoration: none; color: var(--ink); border-bottom: 1.5px solid var(--ink); padding-bottom: 2px; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; font-family: inherit; }
+    .logo em {
+      font-style: italic;
+    }
 
-  .hero-visual { aspect-ratio: 4/5; box-shadow: 0 30px 60px rgba(11,43,60,0.12); }
-  .hero-visual .tile-caption strong { display: block; color: var(--ink); font-family: 'Fraunces', serif; font-size: 15px; margin-bottom: 2px; }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+    }
 
-  /* ---------- 02 ABOUT ---------- */
-  .about-clinic { padding: 30px 56px 90px; max-width: 720px; margin: 0 auto; text-align: center; }
-  .about-clinic h2 { font-size: 32px; margin-bottom: 18px; }
-  .about-clinic p { color: var(--ink-soft); font-size: 16.5px; }
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 500;
+      font-size: 14.5px;
+      position: relative;
+      padding-bottom: 4px;
+    }
 
-  /* ---------- 03 WHY CHOOSE US ---------- */
-  .why-us-wrap { padding: 0 56px 110px; max-width: 1200px; margin: 0 auto; }
-  .why-us-head { max-width: 560px; margin: 0 auto 48px; text-align: center; }
-  .why-us-head h2 { font-size: 32px; }
-  .why-us { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .why-us .card {
-    background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 36px 30px;
-    box-shadow: 0 12px 30px rgba(11,43,60,0.05);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .why-us .card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(11,43,60,0.1); }
-  .why-us .card .icon {
-    width: 44px; height: 44px; border-radius: 12px; background: var(--teal-pale);
-    display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
-    font-family: 'Fraunces', serif; font-style: italic; color: var(--teal); font-size: 18px;
-  }
-  .why-us .card h3 { font-size: 17.5px; margin-bottom: 10px; }
-  .why-us .card p { color: var(--ink-soft); font-size: 14.5px; }
+    nav a.active {
+      color: var(--blue-deep);
+    }
 
-  /* ---------- 04 SERVICES ---------- */
-  .services-wrap { padding: 0 56px 110px; max-width: 1200px; margin: 0 auto; }
-  .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 44px; gap: 24px; flex-wrap: wrap; }
-  .section-head h2 { font-size: 34px; max-width: 480px; }
-  .section-head a { text-decoration: none; font-size: 14.5px; font-weight: 500; color: var(--teal-deep); border-bottom: 1.5px solid var(--teal); padding-bottom: 2px; white-space: nowrap; }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--brown);
+      transition: width 0.25s ease;
+    }
 
-  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .service-card {
-    background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 30px 24px;
-    box-shadow: 0 10px 26px rgba(11,43,60,0.05);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .service-card:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(11,43,60,0.1); }
-  .service-card .num { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; color: var(--teal); margin-bottom: 18px; }
-  .service-card h3 { font-size: 16.5px; margin-bottom: 8px; }
-  .service-card p { font-size: 13.5px; color: var(--ink-soft); }
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
 
-  /* ---------- 05 DOCTOR ---------- */
-  .doctor-wrap { padding: 0 56px 110px; max-width: 1200px; margin: 0 auto; }
-  .doctor {
-    display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center;
-    background: var(--sand); border-radius: 28px; padding: 56px;
-  }
-  .doctor-photo { aspect-ratio: 4/5; box-shadow: 0 20px 40px rgba(11,43,60,0.08); }
-  .doctor-text h2 { font-size: 30px; margin-bottom: 16px; }
-  .doctor-text p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 14px; }
-  .doctor-text p:last-child { margin-bottom: 0; }
+    .btn-cta {
+      background: var(--cta);
+      color: #fff;
+      padding: 12px 26px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14.5px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 14px rgba(47, 120, 168, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
 
-  /* ---------- 06 GALLERY ---------- */
-  .gallery-wrap { padding: 0 56px 110px; max-width: 1200px; margin: 0 auto; }
-  .gallery-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 18px; height: 420px; }
-  .gallery-grid .g-item { transition: transform 0.3s ease; }
-  .gallery-grid .g-item:hover { transform: scale(0.98); }
-  .gallery-grid .g1 { grid-row: 1 / 3; }
+    .btn-cta:hover {
+      transform: translateY(-1px);
+      background: var(--cta-deep);
+      box-shadow: 0 10px 24px rgba(47, 120, 168, 0.32);
+    }
 
-  /* ---------- 07 TESTIMONIALS ---------- */
-  .testimonials-wrap { padding: 0 56px 110px; }
-  .testimonials {
-    max-width: 800px; margin: 0 auto; text-align: center;
-    background: #fff; border: 1px solid var(--line); border-radius: 28px; padding: 64px 56px;
-    box-shadow: 0 20px 44px rgba(11,43,60,0.06);
-  }
-  .testimonials .quote-mark { font-family: 'Fraunces', serif; font-style: italic; font-size: 56px; color: var(--teal); line-height: 1; margin-bottom: 12px; }
-  .testimonials blockquote { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 400; line-height: 1.5; margin-bottom: 24px; }
-  .testimonials .who { font-size: 14px; color: var(--ink-soft); font-weight: 500; }
-  .testimonials .who span { color: var(--gold); }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-  /* ---------- 08 DENTAL TOURISM ---------- */
-  .tourism-wrap { padding: 0 56px 110px; max-width: 1200px; margin: 0 auto; scroll-margin-top: 100px; }
-  .tourism {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
-    background: var(--teal-deep); border-radius: 28px; padding: 56px;
-  }
-  .tourism-text .eyebrow { color: #9FD4DC; }
-  .tourism-text .eyebrow::before { background: var(--gold); }
-  .tourism-text h2 { color: #fff; font-size: 30px; margin-bottom: 16px; }
-  .tourism-text p { color: #BEDCE0; font-size: 15.5px; margin-bottom: 24px; max-width: 440px; }
-  .tourism-text .btn-ghost { color: #fff; border-bottom-color: #fff; }
-  .tourism-visual { aspect-ratio: 4/3; box-shadow: 0 20px 40px rgba(0,0,0,0.18); }
-  .tourism-visual.photo-tile { background: radial-gradient(circle at 25% 25%, rgba(200,155,60,0.28), transparent 55%), radial-gradient(circle at 80% 80%, rgba(251,250,247,0.14), transparent 50%), #0F5C6A; }
-  .tourism-visual .tile-caption { background: rgba(11,43,60,0.7); color: #fff; }
-  .tourism-visual .tile-caption .dot { background: var(--gold); }
-  .tourism-visual.photo-tile.has-image {
-  background: linear-gradient(rgba(11,43,60,0.02), rgba(11,43,60,0.02)), var(--tile-img);
-  background-size: cover;
-  background-position: center;
-}
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
 
-  /* ---------- 09 FINAL CTA ---------- */
-  .final-cta { padding: 110px 56px 130px; text-align: center; }
-  .final-cta .eyebrow { justify-content: center; }
-  .final-cta h2 { font-size: 40px; max-width: 620px; margin: 0 auto 32px; }
+    .hamburger span {
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
 
-  /* ---------- FOOTER ---------- */
-  .site-footer { background: var(--sand); padding: 70px 56px 40px; }
-  .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; }
-  .footer-brand .logo { margin-bottom: 8px; }
-  .footer-brand p { color: var(--ink-soft); font-size: 13.5px; margin-top: 6px; }
-  .footer-form { background: #fff; border-radius: 20px; padding: 32px; box-shadow: 0 12px 30px rgba(11,43,60,0.06); }
-  .footer-form h3 { font-size: 20px; margin-bottom: 18px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-  .footer-form input, .footer-form textarea {
-    width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
-    font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink); background: var(--bg);
-    margin-bottom: 12px; resize: vertical;
-  }
-  .footer-form input:focus, .footer-form textarea:focus { outline: none; border-color: var(--teal); }
-  .footer-form button { margin-top: 4px; }
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
 
-  footer.legal { padding: 32px 56px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); background: var(--sand); }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
 
-  /* ---------- CONTACT MODAL ---------- */
-  #contact-modal { display: none; position: fixed; inset: 0; background: rgba(11,43,60,0.55); align-items: center; justify-content: center; z-index: 100; padding: 20px; }
-  .modal-box { background: var(--bg); padding: 40px; border-radius: 20px; max-width: 420px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(11,43,60,0.2); }
-  .modal-box h3 { font-size: 24px; margin-bottom: 6px; }
-  .modal-box .sub { color: var(--ink-soft); font-size: 14px; margin-bottom: 28px; }
-  .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--ink-soft); }
-  .contact-form { display: flex; flex-direction: column; gap: 14px; }
-  .contact-form label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 500; }
-  .contact-form input, .contact-form textarea {
-    padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; font-family: inherit;
-    font-size: 14.5px; color: var(--ink); background: var(--bg);
-  }
-  .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--teal); }
-  .contact-form textarea { min-height: 100px; resize: vertical; }
-  .contact-form .btn-cta { width: 100%; margin-top: 4px; }
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
 
-  /* ---------- WHATSAPP FLOAT ---------- */
-  .whatsapp-float {
-    position: fixed; bottom: 24px; right: 24px; z-index: 90; width: 56px; height: 56px;
-    background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 16px rgba(37,211,102,0.4); transition: transform 0.2s ease;
-  }
-  .whatsapp-float:hover { transform: scale(1.08); }
-  .whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 78px;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 24px 24px;
+      z-index: 49;
+    }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 900px) {
-    header { padding: 18px 24px; }
-    nav { display: none; }
-    .hamburger { display: flex; }
-    .hero { grid-template-columns: 1fr; padding: 50px 24px 60px; }
-    .hero h1 { font-size: 36px; }
-    .hero-visual { order: -1; aspect-ratio: 4/3; }
-    .about-clinic, .why-us-wrap, .services-wrap, .doctor-wrap, .gallery-wrap, .testimonials-wrap, .tourism-wrap, .final-cta { padding-left: 24px; padding-right: 24px; }
-    .why-us { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-    .doctor, .tourism { grid-template-columns: 1fr; padding: 32px; }
-    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 140px); height: auto; }
-    .gallery-grid .g1 { grid-row: auto; grid-column: 1 / 3; }
-    .testimonials { padding: 44px 28px; }
-    .final-cta h2 { font-size: 30px; }
-    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-    .form-row { grid-template-columns: 1fr; }
-    .site-footer { padding: 50px 24px 32px; }
-    footer.legal { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
-    .whatsapp-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
-  }
+    .mobile-nav.open {
+      display: flex;
+    }
 
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; scroll-behavior: auto !important; }
-    .reveal { opacity: 1; transform: none; }
-  }
-</style>
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* ---------- REVEAL ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- PHOTO TILE ---------- */
+    .photo-tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(47, 120, 168, 0.20), transparent 55%),
+        radial-gradient(circle at 80% 75%, rgba(147, 123, 111, 0.28), transparent 50%),
+        var(--sand);
+    }
+
+    .photo-tile::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-radial-gradient(circle at 30% 30%, transparent 0, transparent 18px, rgba(18, 41, 58, 0.045) 19px, transparent 20px),
+        repeating-radial-gradient(circle at 75% 70%, transparent 0, transparent 26px, rgba(18, 41, 58, 0.04) 27px, transparent 28px);
+    }
+
+    .photo-tile .tile-caption {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250, 247, 245, 0.93);
+      padding: 8px 14px;
+      border-radius: 100px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      box-shadow: 0 6px 16px rgba(18, 41, 58, 0.08);
+    }
+
+    .photo-tile .tile-caption .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sky);
+    }
+
+    .photo-tile.has-image {
+      background-image: linear-gradient(rgba(18, 41, 58, 0.02), rgba(18, 41, 58, 0.02)), var(--tile-img),
+        radial-gradient(circle at 20% 20%, rgba(47, 120, 168, 0.20), transparent 55%);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .photo-tile.has-image::before {
+      display: none;
+    }
+
+    /* ---------- 01 HERO ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 48px;
+      padding: 90px 56px 70px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 1.5px;
+      background: var(--brown);
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
+
+    .hero p.lead {
+      font-size: 18px;
+      color: var(--ink-soft);
+      max-width: 460px;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn-ghost {
+      font-size: 14.5px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 2px;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .hero-visual {
+      aspect-ratio: 4/5;
+      box-shadow: 0 30px 60px rgba(18, 41, 58, 0.14);
+    }
+
+    .hero-visual .tile-caption strong {
+      display: block;
+      color: var(--ink);
+      font-family: 'Fraunces', serif;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    /* ---------- 02 ABOUT ---------- */
+    .about-clinic {
+      padding: 30px 56px 90px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-clinic h2 {
+      font-size: 32px;
+      margin-bottom: 18px;
+    }
+
+    .about-clinic p {
+      color: var(--ink-soft);
+      font-size: 16.5px;
+    }
+
+    /* ---------- 03 WHY ---------- */
+    .why-us-wrap {
+      padding: 0 56px 110px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .why-us-head {
+      max-width: 560px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .why-us-head h2 {
+      font-size: 32px;
+    }
+
+    .why-us {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .why-us .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 36px 30px;
+      box-shadow: 0 12px 30px rgba(18, 41, 58, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .why-us .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 44px rgba(18, 41, 58, 0.1);
+    }
+
+    .why-us .card .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--blue-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--blue);
+      font-size: 18px;
+    }
+
+    .why-us .card h3 {
+      font-size: 17.5px;
+      margin-bottom: 10px;
+    }
+
+    .why-us .card p {
+      color: var(--ink-soft);
+      font-size: 14.5px;
+    }
+
+    /* ---------- 04 SERVICES ---------- */
+    .services-wrap {
+      padding: 0 56px 110px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 44px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-size: 34px;
+      max-width: 480px;
+    }
+
+    .section-head a {
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--blue-deep);
+      border-bottom: 1.5px solid var(--blue);
+      padding-bottom: 2px;
+      white-space: nowrap;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px 24px;
+      box-shadow: 0 10px 26px rgba(18, 41, 58, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(18, 41, 58, 0.1);
+    }
+
+    .service-card .num {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--blue);
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 16.5px;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- 05 DOCTOR ---------- */
+    .doctor-wrap {
+      padding: 0 56px 110px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .doctor {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 56px;
+      align-items: center;
+      background: var(--sand);
+      border-radius: 28px;
+      padding: 56px;
+    }
+
+    .doctor-photo {
+      aspect-ratio: 4/5;
+      box-shadow: 0 20px 40px rgba(18, 41, 58, 0.1);
+    }
+
+    .doctor-text h2 {
+      font-size: 30px;
+      margin-bottom: 16px;
+    }
+
+    .doctor-text p {
+      color: var(--ink-soft);
+      font-size: 15.5px;
+      margin-bottom: 14px;
+    }
+
+    .doctor-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ---------- 06 GALLERY ---------- */
+    .gallery-wrap {
+      padding: 0 56px 110px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 18px;
+      height: 420px;
+    }
+
+    .gallery-grid .g-item {
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-grid .g-item:hover {
+      transform: scale(0.98);
+    }
+
+    .gallery-grid .g1 {
+      grid-row: 1 / 3;
+    }
+
+    /* ---------- 07 TESTIMONIALS ---------- */
+    .testimonials-wrap {
+      padding: 0 56px 110px;
+    }
+
+    .testimonials {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 64px 56px;
+      box-shadow: 0 20px 44px rgba(18, 41, 58, 0.06);
+    }
+
+    .testimonials .quote-mark {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 56px;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .testimonials blockquote {
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .testimonials .who {
+      font-size: 14px;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .testimonials .who span {
+      color: var(--brown);
+    }
+
+    /* ---------- 08 TOURISM ---------- */
+    .tourism-wrap {
+      padding: 0 56px 110px;
+      max-width: 1200px;
+      margin: 0 auto;
+      scroll-margin-top: 100px;
+    }
+
+    .tourism {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      background: var(--blue-deep);
+      border-radius: 28px;
+      padding: 56px;
+    }
+
+    .tourism-text .eyebrow {
+      color: #fff;
+      opacity: .85;
+    }
+
+    .tourism-text .eyebrow::before {
+      background: var(--brown);
+    }
+
+    .tourism-text h2 {
+      color: #fff;
+      font-size: 30px;
+      margin-bottom: 16px;
+    }
+
+    .tourism-text p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 15.5px;
+      margin-bottom: 24px;
+      max-width: 440px;
+    }
+
+    .tourism-text .btn-ghost {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+
+    .tourism-visual {
+      aspect-ratio: 4/3;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .tourism-visual.photo-tile {
+      background: radial-gradient(circle at 25% 25%, rgba(147, 123, 111, 0.5), transparent 55%), radial-gradient(circle at 80% 80%, rgba(11, 153, 240, 0.25), transparent 50%), #2F78A8;
+    }
+
+    .tourism-visual .tile-caption {
+      background: rgba(18, 41, 58, 0.72);
+      color: #fff;
+    }
+
+    .tourism-visual.photo-tile.has-image {
+      background: linear-gradient(rgba(18, 41, 58, 0.02), rgba(18, 41, 58, 0.02)), var(--tile-img), #2F78A8;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ---------- 09 FINAL CTA ---------- */
+    .final-cta {
+      padding: 110px 56px 130px;
+      text-align: center;
+    }
+
+    .final-cta .eyebrow {
+      justify-content: center;
+    }
+
+    .final-cta h2 {
+      font-size: 40px;
+      max-width: 620px;
+      margin: 0 auto 32px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .site-footer {
+      background: var(--sand);
+      padding: 70px 56px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 56px;
+    }
+
+    .footer-brand .logo {
+      margin-bottom: 8px;
+    }
+
+    .footer-brand p {
+      color: var(--ink-soft);
+      font-size: 13.5px;
+      margin-top: 6px;
+    }
+
+    .footer-form {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 12px 30px rgba(18, 41, 58, 0.06);
+    }
+
+    .footer-form h3 {
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .footer-form input,
+    .footer-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--bg);
+      margin-bottom: 12px;
+      resize: vertical;
+    }
+
+    .form-row input {
+      margin-bottom: 0;
+    }
+
+    .footer-form input:focus,
+    .footer-form textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .footer-form button {
+      margin-top: 4px;
+    }
+
+    footer.legal {
+      padding: 32px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--ink-soft);
+      background: var(--sand);
+    }
+
+    .footer-credit {
+      margin: 0;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .footer-credit a {
+      color: var(--blue-deep);
+      font-weight: 600;
+    }
+
+    .footer-credit a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- BOOKING MODAL ---------- */
+    #contact-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 41, 58, 0.55);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-box {
+      background: var(--bg);
+      border-radius: 24px;
+      max-width: 560px;
+      width: 100%;
+      position: relative;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 30px 60px rgba(18, 41, 58, 0.25);
+      overflow: hidden;
+    }
+
+    .bk-head {
+      padding: 30px 32px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bk-head h3 {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .bk-head .sub {
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+
+    .modal-close:hover {
+      background: var(--sand);
+    }
+
+    .steps {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .steps li {
+      list-style: none;
+      flex: 1;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      padding-top: 8px;
+      border-top: 3px solid var(--sand-deep);
+      transition: color .25s, border-color .25s;
+    }
+
+    .steps li.on {
+      color: var(--blue-deep);
+      border-color: var(--blue);
+    }
+
+    .steps li.done {
+      color: var(--blue-deep);
+      border-color: var(--sky);
+    }
+
+    .bk-body {
+      padding: 24px 32px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .panel.on {
+      display: block;
+      animation: pin .3s ease;
+    }
+
+    @keyframes pin {
+      from {
+        opacity: 0;
+        transform: translateX(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .bk-label {
+      font-size: 13px;
+      font-weight: 600;
+      margin: 0 0 10px;
+      display: block;
+    }
+
+    .bk-label:not(:first-child) {
+      margin-top: 22px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 100px;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font: 500 14px 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .chip[aria-pressed="true"] {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(47, 120, 168, 0.28);
+    }
+
+    .seg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .seg .chip {
+      border-radius: 14px;
+      text-align: left;
+      padding: 10px 16px;
+      line-height: 1.3;
+    }
+
+    .seg .chip small {
+      display: block;
+      font-weight: 400;
+      font-size: 12px;
+      opacity: .8;
+    }
+
+    .days {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 2px 12px;
+      scroll-snap-type: x proximity;
+    }
+
+    .day {
+      flex: 0 0 66px;
+      scroll-snap-align: start;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 16px;
+      padding: 10px 0;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+      transition: all .2s ease;
+    }
+
+    .day span {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      text-transform: capitalize;
+    }
+
+    .day b {
+      display: block;
+      font: 500 22px 'Fraunces', serif;
+      line-height: 1.2;
+    }
+
+    .day:hover:not(:disabled) {
+      border-color: var(--blue);
+    }
+
+    .day[aria-pressed="true"] {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(47, 120, 168, 0.28);
+    }
+
+    .day[aria-pressed="true"] span {
+      color: rgba(255, 255, 255, .85);
+    }
+
+    .day:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      background: var(--sand);
+    }
+
+    .slot-group {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin: 14px 0 8px;
+    }
+
+    .slots {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .slot {
+      min-height: 44px;
+      border-radius: 12px;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font: 500 14px 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+
+    .slot:hover {
+      border-color: var(--blue);
+    }
+
+    .slot[aria-pressed="true"] {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .hint {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      margin-top: 14px;
+    }
+
+    .bk-body .fld {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .bk-body input,
+    .bk-body textarea {
+      padding: 12px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 14.5px;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .bk-body input:focus,
+    .bk-body textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .bk-body textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .summary {
+      background: var(--sand);
+      border-radius: 16px;
+      padding: 16px 18px;
+      display: grid;
+      gap: 8px;
+      font-size: 13.5px;
+      margin-bottom: 18px;
+    }
+
+    .summary div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .summary span {
+      color: var(--ink-soft);
+    }
+
+    .summary b {
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .bk-foot {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px calc(20px + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid var(--line);
+      background: var(--bg);
+    }
+
+    .bk-foot .btn-cta {
+      padding: 12px 28px;
+    }
+
+    .bk-foot .btn-cta:disabled {
+      background: var(--sand-deep);
+      color: var(--ink-soft);
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .bk-back {
+      background: none;
+      border: none;
+      font: 500 14.5px 'Inter', sans-serif;
+      color: var(--ink);
+      cursor: pointer;
+      padding: 12px 8px;
+      visibility: hidden;
+    }
+
+    .bk-back.show {
+      visibility: visible;
+    }
+
+    .bk-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bk-wa svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
+
+    /* ---------- WHATSAPP FLOAT ---------- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      right: 24px;
+      z-index: 90;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+    }
+
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      header {
+        padding: 18px 24px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 50px 24px 60px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero-visual {
+        order: -1;
+        aspect-ratio: 4/3;
+      }
+
+      .about-clinic,
+      .why-us-wrap,
+      .services-wrap,
+      .doctor-wrap,
+      .gallery-wrap,
+      .testimonials-wrap,
+      .tourism-wrap,
+      .final-cta {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .why-us {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .doctor,
+      .tourism {
+        grid-template-columns: 1fr;
+        padding: 32px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 140px);
+        height: auto;
+      }
+
+      .gallery-grid .g1 {
+        grid-row: auto;
+        grid-column: 1 / 3;
+      }
+
+      .testimonials {
+        padding: 44px 28px;
+      }
+
+      .final-cta h2 {
+        font-size: 30px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row input {
+        margin-bottom: 0;
+      }
+
+      .site-footer {
+        padding: 50px 24px 32px;
+      }
+
+      footer.legal {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+      }
+
+      .whatsapp-float {
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        right: 20px;
+        width: 52px;
+        height: 52px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bk-head,
+      .bk-body,
+      .bk-foot {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .seg {
+        grid-template-columns: 1fr;
+      }
+
+      .slots {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <div class="logo">Smile <em>Depot</em></div>
-  <nav>
-    <a href="index.html" class="active">Inicio</a>
+  <header>
+    <div class="logo">Smile <em>Depot</em></div>
+    <nav>
+      <a href="index.html" class="active">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="galeria.html">Galería</a>
+    </nav>
+    <div class="header-right">
+      <button class="btn-cta" type="button" onclick="openModal()">Agendar cita</button>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Inicio</a>
     <a href="servicios.html">Servicios</a>
     <a href="galeria.html">Galería</a>
-  </nav>
-  <div class="header-right">
-    <button class="btn-cta" type="button" onclick="openModal()">Agendar cita</button>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
   </div>
-</header>
 
-<div class="mobile-nav" id="mobileNav">
-  <a href="index.html">Inicio</a>
-  <a href="servicios.html">Servicios</a>
-  <a href="galeria.html">Galería</a>
-</div>
-
-<section class="hero">
-  <div>
-    <div class="eyebrow">Cozumel, México</div>
-    <h1>Sonrisas con <em>estándares internacionales</em>, en el corazón del Caribe.</h1>
-    <p class="lead">Odontología moderna para pacientes locales, expatriados y turismo dental — con la calma y la calidez de la isla.</p>
-    <div class="hero-actions">
-      <button class="btn-cta" type="button" onclick="openModal()">Agendar cita</button>
-      <a href="servicios.html" class="btn-ghost">Ver servicios</a>
-    </div>
-  </div>
-  <div class="hero-visual photo-tile has-image" style="--tile-img:url('hero.png');">
-    <div class="tile-caption"><span class="dot"></span><strong>+15 años</strong>de experiencia clínica en Cozumel</div>
-  </div>
-</section>
-
-<svg class="tideline" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true">
-  <defs><linearGradient id="tide1" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#147A8C" stop-opacity="0.5"/><stop offset="100%" stop-color="#C89B3C" stop-opacity="0.5"/>
-  </linearGradient></defs>
-  <path d="M0,32 C150,8 300,52 450,30 C600,8 750,50 900,28 C1050,10 1150,36 1200,26" stroke="url(#tide1)"/>
-</svg>
-
-<section class="about-clinic reveal">
-  <div class="eyebrow" style="justify-content:center;">Nuestra filosofía</div>
-  <h2>No es una clínica dental genérica.</h2>
-  <p>En Smile Depot combinamos protocolos y materiales de estándar internacional con algo que muy pocas clínicas ofrecen: tiempo. Cada tratamiento empieza con una conversación real sobre lo que quieres para tu sonrisa, y termina con un plan claro, sin letras pequeñas ni sorpresas — ya sea que vivas en la isla o llegues desde el aeropuerto directo a tu cita.</p>
-</section>
-
-<div class="why-us-wrap reveal">
-  <div class="why-us-head">
-    <div class="eyebrow" style="justify-content:center;">Nuestra diferencia</div>
-    <h2>Confianza que se nota desde la primera cita</h2>
-  </div>
-  <div class="why-us">
-    <div class="card">
-      <div class="icon">i</div>
-      <h3>Tecnología moderna</h3>
-      <p>Radiografía digital de bajo dosis, escaneo intraoral 3D y esterilización certificada — el mismo equipo que encontrarías en una clínica de referencia en EE. UU. o Canadá.</p>
-    </div>
-    <div class="card">
-      <div class="icon">ii</div>
-      <h3>Estándares internacionales</h3>
-      <p>Protocolos clínicos documentados, materiales certificados y bioseguridad auditada, pensados para dar la misma tranquilidad a un paciente local que a uno que viaja desde otro país.</p>
-    </div>
-    <div class="card">
-      <div class="icon">iii</div>
-      <h3>Atención personalizada</h3>
-      <p>Citas sin prisas, comunicación directa con tu dentista y un plan de tratamiento explicado en términos claros, antes de que tomes cualquier decisión.</p>
-    </div>
-  </div>
-</div>
-<section class="services-wrap reveal">
-  <div class="section-head">
-    <h2>Tratamientos pensados para cada tipo de paciente</h2>
-    <a href="servicios.html">Ver todos los servicios →</a>
-  </div>
-  <div class="services-grid">
-    <div class="service-card"><div class="num">i</div><h3>Diseño de sonrisa</h3><p>Carillas y contorneado estético planeados digitalmente antes de tocar un solo diente.</p></div>
-    <div class="service-card"><div class="num">ii</div><h3>Implantes dentales</h3><p>Reemplazo de piezas con implantes de titanio y seguimiento fotográfico del proceso.</p></div>
-    <div class="service-card"><div class="num">iii</div><h3>Ortodoncia</h3><p>Brackets tradicionales o alineadores transparentes, según tu ritmo de vida.</p></div>
-    <div class="service-card"><div class="num">iv</div><h3>Blanqueamiento</h3><p>Aclarado profesional en consultorio, con resultados visibles desde la primera sesión.</p></div>
-  </div>
-</section>
-
-<div class="doctor-wrap reveal" id="doctor">
-  <div class="doctor">
-    <div class="doctor-photo photo-tile has-image" style="--tile-img:url('dr.png');">
-      <div class="tile-caption"><span class="dot"></span>Dr. Pedro Núñez Ceballos</div>
-    </div>
-    <div class="doctor-text">
-      <div class="eyebrow">Nuestro doctor</div>
-      <h2>Un equipo comprometido con tu sonrisa</h2>
-      <p>El Dr. Pedro Núñez Ceballos lidera Smile Depot con un enfoque centrado en la prevención y en explicarle a cada paciente el porqué detrás de cada recomendación, no solo el qué.</p>
-      <p>Con más de 15 años ejerciendo en Cozumel, ha atendido tanto a familias de la isla como a visitantes que combinan su tratamiento dental con sus vacaciones — siempre con el mismo nivel de cuidado.</p>
-    </div>
-  </div>
-</div>
-
-<section class="gallery-wrap reveal">
-  <div class="section-head">
-    <h2>Un vistazo a la clínica</h2>
-    <a href="galeria.html">Ver galería completa →</a>
-  </div>
-<div class="gallery-grid">
-    <div class="g-item photo-tile has-image" style="--tile-img:url('consultorio.png');"><div class="tile-caption"><span class="dot"></span>Consultorio</div></div>
-    <div class="g-item photo-tile"><div class="tile-caption"><span class="dot"></span>Equipo dental</div></div>
-    <div class="g-item photo-tile has-image" style="--tile-img:url('sala.png');"><div class="tile-caption"><span class="dot"></span>Sala de espera</div></div>
-    <div class="g-item photo-tile"><div class="tile-caption"><span class="dot"></span>Esterilización</div></div>
-  </div>
-</section>
-
-<div class="testimonials-wrap reveal">
-  <div class="testimonials">
-    <div class="quote-mark">"</div>
-    <blockquote>Llegué pensando que sería una cita más de mis vacaciones en Cozumel, y salí con el tratamiento que llevaba años posponiendo. Todo el equipo me explicó cada paso, sin apuros.</blockquote>
-    <div class="who">— Laura M., <span>Texas, EE. UU.</span></div>
-  </div>
-</div>
-
-<div class="tourism-wrap reveal" id="turismo">
-  <div class="tourism">
-    <div class="tourism-text">
-      <div class="eyebrow">Turismo dental</div>
-      <h2>Tu tratamiento y tus vacaciones, en un mismo viaje</h2>
-      <p>Coordinamos tu plan de tratamiento con tus fechas de viaje: valoración por fotos antes de llegar, citas agrupadas para aprovechar tu estadía, y recomendaciones de la isla para el tiempo entre sesiones.</p>
-      <button class="btn-ghost" type="button" onclick="openModal()">Preguntar por el proceso →</button>
-    </div>
-    <div class="tourism-visual photo-tile has-image" style="--tile-img:url('turismo.png');">
-      <div class="tile-caption"><span class="dot"></span>Cozumel, Quintana Roo</div>
-    </div>
-  </div>
-</div>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="logo">Smile <em>Depot</em></div>
-      <p>Cozumel, Quintana Roo, México</p>
-      <p>© 2026 Smile Depot</p>
-    </div>
-    <form class="footer-form" id="footer-form">
-      <h3>Escríbenos</h3>
-      <div class="form-row">
-        <input type="text" id="ff-name" name="nombre" placeholder="Nombre" required>
-        <input type="email" id="ff-email" name="email" placeholder="Correo" required>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Cozumel, México</div>
+      <h1>Sonrisas con <em>estándares internacionales</em>, en el corazón del Caribe.</h1>
+      <p class="lead">Odontología moderna para pacientes locales, expatriados y turismo dental — con la calma y la
+        calidez de la isla.</p>
+      <div class="hero-actions">
+        <button class="btn-cta" type="button" onclick="openModal()">Agendar cita</button>
+        <a href="servicios.html" class="btn-ghost">Ver servicios</a>
       </div>
-      <input type="tel" id="ff-phone" name="telefono" placeholder="Teléfono (opcional)">
-      <textarea id="ff-message" name="mensaje" placeholder="Cuéntanos qué necesitas" rows="3" required></textarea>
-      <button type="submit" class="btn-cta">Enviar mensaje</button>
-    </form>
+    </div>
+    <div class="hero-visual photo-tile has-image" style="--tile-img:url('hero.png');">
+      <div class="tile-caption"><span class="dot"></span><strong>+15 años</strong>de experiencia clínica en Cozumel
+      </div>
+    </div>
+  </section>
+
+  <svg class="tideline" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="tide1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#0B99F0" stop-opacity="0.55" />
+        <stop offset="100%" stop-color="#937B6F" stop-opacity="0.6" />
+      </linearGradient>
+    </defs>
+    <path d="M0,32 C150,8 300,52 450,30 C600,8 750,50 900,28 C1050,10 1150,36 1200,26" stroke="url(#tide1)" />
+  </svg>
+
+  <section class="about-clinic reveal">
+    <div class="eyebrow" style="justify-content:center;">Nuestra filosofía</div>
+    <h2>No es una clínica dental genérica.</h2>
+    <p>En Smile Depot combinamos protocolos y materiales de estándar internacional con algo que muy pocas clínicas
+      ofrecen: tiempo. Cada tratamiento empieza con una conversación real sobre lo que quieres para tu sonrisa, y
+      termina con un plan claro, sin letras pequeñas ni sorpresas — ya sea que vivas en la isla o llegues desde el
+      aeropuerto directo a tu cita.</p>
+  </section>
+
+  <div class="why-us-wrap reveal">
+    <div class="why-us-head">
+      <div class="eyebrow" style="justify-content:center;">Nuestra diferencia</div>
+      <h2>Confianza que se nota desde la primera cita</h2>
+    </div>
+    <div class="why-us">
+      <div class="card">
+        <div class="icon">i</div>
+        <h3>Tecnología moderna</h3>
+        <p>Radiografía digital de bajo dosis, escaneo intraoral 3D y esterilización certificada — el mismo equipo que
+          encontrarías en una clínica de referencia en EE. UU. o Canadá.</p>
+      </div>
+      <div class="card">
+        <div class="icon">ii</div>
+        <h3>Estándares internacionales</h3>
+        <p>Protocolos clínicos documentados, materiales certificados y bioseguridad auditada, pensados para dar la misma
+          tranquilidad a un paciente local que a uno que viaja desde otro país.</p>
+      </div>
+      <div class="card">
+        <div class="icon">iii</div>
+        <h3>Atención personalizada</h3>
+        <p>Citas sin prisas, comunicación directa con tu dentista y un plan de tratamiento explicado en términos claros,
+          antes de que tomes cualquier decisión.</p>
+      </div>
+    </div>
   </div>
-</footer>
 
-<footer class="legal">
-  <span>© 2026 Smile Depot</span>
-  <span>Cozumel, Quintana Roo, México</span>
-</footer>
+  <section class="services-wrap reveal">
+    <div class="section-head">
+      <h2>Tratamientos pensados para cada tipo de paciente</h2>
+      <a href="servicios.html">Ver todos los servicios →</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="num">i</div>
+        <h3>Diseño de sonrisa</h3>
+        <p>Carillas y contorneado estético planeados digitalmente antes de tocar un solo diente.</p>
+      </div>
+      <div class="service-card">
+        <div class="num">ii</div>
+        <h3>Implantes dentales</h3>
+        <p>Reemplazo de piezas con implantes de titanio y seguimiento fotográfico del proceso.</p>
+      </div>
+      <div class="service-card">
+        <div class="num">iii</div>
+        <h3>Ortodoncia</h3>
+        <p>Brackets tradicionales o alineadores transparentes, según tu ritmo de vida.</p>
+      </div>
+      <div class="service-card">
+        <div class="num">iv</div>
+        <h3>Blanqueamiento</h3>
+        <p>Aclarado profesional en consultorio, con resultados visibles desde la primera sesión.</p>
+      </div>
+    </div>
+  </section>
 
-<div id="contact-modal">
-  <div class="modal-box">
-    <button class="modal-close" type="button" onclick="closeModal()" aria-label="Cerrar">&times;</button>
-    <h3>Agendar cita</h3>
-    <p class="sub">Completa el formulario y te contactaremos por WhatsApp.</p>
-    <form class="contact-form" id="contact-form">
-      <label>Nombre<input type="text" id="cf-name" name="name" required autocomplete="name"></label>
-      <label>Teléfono<input type="tel" id="cf-phone" name="phone" required autocomplete="tel"></label>
-      <label>Email<input type="email" id="cf-email" name="email" autocomplete="email"></label>
-      <label>Mensaje<textarea id="cf-message" name="message" required placeholder="¿En qué podemos ayudarte?"></textarea></label>
-      <button type="submit" class="btn-cta">Enviar solicitud</button>
-    </form>
+  <div class="doctor-wrap reveal" id="doctor">
+    <div class="doctor">
+      <div class="doctor-photo photo-tile has-image" style="--tile-img:url('dr.png');">
+        <div class="tile-caption"><span class="dot"></span>Dr. Pedro Núñez Ceballos</div>
+      </div>
+      <div class="doctor-text">
+        <div class="eyebrow">Nuestro doctor</div>
+        <h2>Un equipo comprometido con tu sonrisa</h2>
+        <p>El Dr. Pedro Núñez Ceballos lidera Smile Depot con un enfoque centrado en la prevención y en explicarle a
+          cada paciente el porqué detrás de cada recomendación, no solo el qué.</p>
+        <p>Con más de 15 años ejerciendo en Cozumel, ha atendido tanto a familias de la isla como a visitantes que
+          combinan su tratamiento dental con sus vacaciones — siempre con el mismo nivel de cuidado.</p>
+      </div>
+    </div>
   </div>
-</div>
 
-<a class="whatsapp-float" id="whatsapp-float" href="#" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+  <section class="gallery-wrap reveal">
+    <div class="section-head">
+      <h2>Un vistazo a la clínica</h2>
+      <a href="galeria.html">Ver galería completa →</a>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item g1 photo-tile has-image" style="--tile-img:url('consultorio.png');">
+        <div class="tile-caption"><span class="dot"></span>Consultorio</div>
+      </div>
+      <div class="g-item photo-tile">
+        <div class="tile-caption"><span class="dot"></span>Equipo dental</div>
+      </div>
+      <div class="g-item photo-tile has-image" style="--tile-img:url('sala.png');">
+        <div class="tile-caption"><span class="dot"></span>Sala de espera</div>
+      </div>
+      <div class="g-item photo-tile">
+        <div class="tile-caption"><span class="dot"></span>Esterilización</div>
+      </div>
+    </div>
+  </section>
 
-<script>
-  // ---------- Configuración central ----------
-  // Único lugar donde se define el número de WhatsApp de la clínica.
-  // Formato: código de país + número, sin espacios ni símbolos.
-  const WHATSAPP_NUMBER = '529871045499';
+  <div class="testimonials-wrap reveal">
+    <div class="testimonials">
+      <div class="quote-mark">“</div>
+      <blockquote>Llegué pensando que sería una cita más de mis vacaciones en Cozumel, y salí con el tratamiento que
+        llevaba años posponiendo. Todo el equipo me explicó cada paso, sin apuros.</blockquote>
+      <div class="who">— Laura M., <span>Texas, EE. UU.</span></div>
+    </div>
+  </div>
 
-  function whatsappUrl(text) {
-    return 'https://wa.me/' + WHATSAPP_NUMBER + (text ? '?text=' + text : '');
-  }
+  <div class="tourism-wrap reveal" id="turismo">
+    <div class="tourism">
+      <div class="tourism-text">
+        <div class="eyebrow">Turismo dental</div>
+        <h2>Tu tratamiento y tus vacaciones, en un mismo viaje</h2>
+        <p>Coordinamos tu plan de tratamiento con tus fechas de viaje: valoración por fotos antes de llegar, citas
+          agrupadas para aprovechar tu estadía, y recomendaciones de la isla para el tiempo entre sesiones.</p>
+        <button class="btn-ghost" type="button" onclick="openModal('Turismo dental')">Preguntar por el proceso
+          →</button>
+      </div>
+      <div class="tourism-visual photo-tile has-image" style="--tile-img:url('turismo.png');">
+        <div class="tile-caption"><span class="dot"></span>Cozumel, Quintana Roo</div>
+      </div>
+    </div>
+  </div>
 
-  // Set inicial del botón flotante usando la variable central
-  document.getElementById('whatsapp-float').href = whatsappUrl();
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">Smile <em>Depot</em></div>
+        <p>Cozumel, Quintana Roo, México</p>
+        <p>© 2026 Smile Depot</p>
+      </div>
+      <form class="footer-form" id="footer-form">
+        <h3>Escríbenos</h3>
+        <div class="form-row">
+          <input type="text" id="ff-name" name="nombre" placeholder="Nombre" required autocomplete="name">
+          <input type="email" id="ff-email" name="email" placeholder="Correo" required autocomplete="email">
+        </div>
+        <input type="tel" id="ff-phone" name="telefono" placeholder="Teléfono (opcional)" autocomplete="tel">
+        <textarea id="ff-message" name="mensaje" placeholder="Cuéntanos qué necesitas" rows="3" required></textarea>
+        <button type="submit" class="btn-cta">Enviar mensaje</button>
+      </form>
+    </div>
+  </footer>
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  <footer class="legal">
+    <span>© 2026 Smile Depot</span>
+    <span>Cozumel, Quintana Roo, México</span>
+    <p class="footer-credit">Desarrollado por <a href="https://aclsys.net/servicios" target="_blank"
+        rel="noopener">ACLSYS</a></p>
+  </footer>
 
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobileNav');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-  });
+  <div id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="bk-title">
+    <div class="modal-box">
+      <div class="bk-head">
+        <button class="modal-close" type="button" onclick="closeModal()" aria-label="Cerrar">&times;</button>
+        <h3 id="bk-title">Agendar cita</h3>
+        <p class="sub">Elige servicio, día y hora. Te confirmamos por WhatsApp.</p>
+        <ol class="steps" id="steps" style="padding:0;margin-top:18px">
+          <li class="on">1 · Servicio</li>
+          <li>2 · Fecha y hora</li>
+          <li>3 · Tus datos</li>
+        </ol>
+      </div>
+      <form id="contact-form" style="display:contents" novalidate>
+        <div class="bk-body">
+          <div class="panel on" data-step="0">
+            <span class="bk-label">¿Qué te interesa?</span>
+            <div class="chips" id="svc-chips"></div>
+            <span class="bk-label">¿Cómo nos visitas?</span>
+            <div class="seg" id="who-chips">
+              <button type="button" class="chip" aria-pressed="true" data-v="Vivo en la isla">Vivo en la
+                isla<small>Paciente local</small></button>
+              <button type="button" class="chip" aria-pressed="false" data-v="Visito Cozumel">Visito
+                Cozumel<small>Turismo dental</small></button>
+            </div>
+          </div>
+          <div class="panel" data-step="1">
+            <span class="bk-label">Elige un día</span>
+            <div class="days" id="days"></div>
+            <div id="slots-wrap">
+              <p class="hint">Selecciona un día para ver los horarios disponibles.</p>
+            </div>
+          </div>
+          <div class="panel" data-step="2">
+            <div class="summary" id="summary"></div>
+            <label class="fld">Nombre<input type="text" id="cf-name" autocomplete="name" required></label>
+            <label class="fld">Teléfono<input type="tel" id="cf-phone" autocomplete="tel" required></label>
+            <label class="fld">Email (opcional)<input type="email" id="cf-email" autocomplete="email"></label>
+            <label class="fld">Mensaje (opcional)<textarea id="cf-message"
+                placeholder="¿Algo que debamos saber?"></textarea></label>
+          </div>
+        </div>
+        <div class="bk-foot">
+          <button type="button" class="bk-back" id="bk-back">← Atrás</button>
+          <button type="button" class="btn-cta" id="bk-next" disabled>Continuar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-  function openModal() { document.getElementById('contact-modal').style.display = 'flex'; }
-  function closeModal() { document.getElementById('contact-modal').style.display = 'none'; }
+  <a class="whatsapp-float" id="whatsapp-float" href="#" target="_blank" rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
 
-  document.getElementById('contact-modal').addEventListener('click', (e) => {
-    if (e.target.id === 'contact-modal') closeModal();
-  });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  <script>
+    // Número de WhatsApp de la clínica (código de país + número, sin símbolos)
+    const WHATSAPP_NUMBER = '529871045499';
 
-  function buildWaMessage(name, phone, email, message) {
-    return encodeURIComponent(
-      'Hola, me gustaría agendar una cita.\n\n' +
-      'Nombre: ' + name + '\n' +
-      'Teléfono: ' + phone + '\n' +
-      (email ? 'Email: ' + email + '\n' : '') +
-      '\nMensaje: ' + message
-    );
-  }
+    function whatsappUrl(text) {
+      return 'https://wa.me/' + WHATSAPP_NUMBER + (text ? '?text=' + text : '');
+    }
+    document.getElementById('whatsapp-float').href = whatsappUrl();
 
-  document.getElementById('contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const text = buildWaMessage(
-      document.getElementById('cf-name').value.trim(),
-      document.getElementById('cf-phone').value.trim(),
-      document.getElementById('cf-email').value.trim(),
-      document.getElementById('cf-message').value.trim()
-    );
-    window.open(whatsappUrl(text), '_blank');
-    closeModal();
-    e.target.reset();
-  });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  document.getElementById('footer-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const text = buildWaMessage(
-      document.getElementById('ff-name').value.trim(),
-      document.getElementById('ff-phone').value.trim() || 'No proporcionado',
-      document.getElementById('ff-email').value.trim(),
-      document.getElementById('ff-message').value.trim()
-    );
-    window.open(whatsappUrl(text), '_blank');
-    e.target.reset();
-  });
-</script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+
+    // ---------- Reserva interactiva ----------
+    // Horarios de ejemplo: editar según la clínica (0 = domingo)
+    const SCHEDULE = { 1: [9, 18], 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 13] };
+    const SERVICES = ['Primera valoración', 'Diseño de sonrisa', 'Implantes dentales', 'Ortodoncia', 'Blanqueamiento', 'Turismo dental'];
+    const MONTHS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const DAYS = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+    const DAYS_LONG = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    const bk = { step: 0, service: '', who: 'Vivo en la isla', date: null, time: '' };
+
+    const modal = document.getElementById('contact-modal');
+    const nextBtn = document.getElementById('bk-next');
+    const backBtn = document.getElementById('bk-back');
+    const panels = [...document.querySelectorAll('.panel')];
+    const stepEls = [...document.querySelectorAll('#steps li')];
+    const WA_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>';
+
+    // Chips de servicio
+    const svcBox = document.getElementById('svc-chips');
+    svcBox.innerHTML = SERVICES.map(s => '<button type="button" class="chip" aria-pressed="false" data-v="' + s + '">' + s + '</button>').join('');
+    function pick(box, btn, key) {
+      box.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === btn));
+      bk[key] = btn.dataset.v; refresh();
+    }
+    svcBox.addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) pick(svcBox, b, 'service'); });
+    const whoBox = document.getElementById('who-chips');
+    whoBox.addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) pick(whoBox, b, 'who'); });
+
+    // Días (próximos 14, domingos deshabilitados)
+    const daysBox = document.getElementById('days');
+    (function buildDays() {
+      const base = new Date(); base.setHours(0, 0, 0, 0);
+      let html = '';
+      for (let i = 0; i < 14; i++) {
+        const d = new Date(base); d.setDate(base.getDate() + i);
+        const off = !SCHEDULE[d.getDay()];
+        html += '<button type="button" class="day" aria-pressed="false" data-i="' + i + '"' + (off ? ' disabled aria-label="Cerrado"' : '') + '><span>' + DAYS[d.getDay()] + '</span><b>' + d.getDate() + '</b><span>' + MONTHS[d.getMonth()] + '</span></button>';
+      }
+      daysBox.innerHTML = html;
+      daysBox._base = base;
+    })();
+    daysBox.addEventListener('click', e => {
+      const b = e.target.closest('.day'); if (!b || b.disabled) return;
+      daysBox.querySelectorAll('.day').forEach(x => x.setAttribute('aria-pressed', x === b));
+      const d = new Date(daysBox._base); d.setDate(d.getDate() + Number(b.dataset.i));
+      bk.date = d; bk.time = ''; renderSlots(); refresh();
+    });
+
+    function renderSlots() {
+      const [open, close] = SCHEDULE[bk.date.getDay()];
+      const mk = h => '<button type="button" class="slot" aria-pressed="false" data-t="' + h + ':00">' + h + ':00</button>';
+      let am = '', pm = '';
+      for (let h = open; h < close; h++) (h < 12 ? (am += mk(h)) : (pm += mk(h)));
+      document.getElementById('slots-wrap').innerHTML =
+        (am ? '<p class="slot-group">Mañana</p><div class="slots">' + am + '</div>' : '') +
+        (pm ? '<p class="slot-group">Tarde</p><div class="slots">' + pm + '</div>' : '') +
+        '<p class="hint">Horario de ' + DAYS_LONG[bk.date.getDay()] + ': ' + open + ':00 a ' + close + ':00. Confirmaremos la disponibilidad por WhatsApp.</p>';
+    }
+    document.getElementById('slots-wrap').addEventListener('click', e => {
+      const b = e.target.closest('.slot'); if (!b) return;
+      document.querySelectorAll('.slot').forEach(x => x.setAttribute('aria-pressed', x === b));
+      bk.time = b.dataset.t; refresh();
+    });
+
+    function fmtDate(d) { return DAYS_LONG[d.getDay()] + ' ' + d.getDate() + ' de ' + MONTHS[d.getMonth()]; }
+
+    function refresh() {
+      panels.forEach((p, i) => p.classList.toggle('on', i === bk.step));
+      stepEls.forEach((li, i) => { li.className = i === bk.step ? 'on' : (i < bk.step ? 'done' : ''); });
+      backBtn.classList.toggle('show', bk.step > 0);
+      const last = bk.step === 2;
+      nextBtn.innerHTML = last ? '<span class="bk-wa">' + WA_ICON + 'Enviar por WhatsApp</span>' : 'Continuar';
+      const ok = bk.step === 0 ? !!bk.service : bk.step === 1 ? !!(bk.date && bk.time) : true;
+      nextBtn.disabled = !ok;
+      if (last) {
+        document.getElementById('summary').innerHTML =
+          '<div><span>Servicio</span><b>' + bk.service + '</b></div>' +
+          '<div><span>Visita</span><b>' + bk.who + '</b></div>' +
+          '<div><span>Fecha</span><b>' + fmtDate(bk.date) + '</b></div>' +
+          '<div><span>Hora</span><b>' + bk.time + '</b></div>';
+      }
+    }
+
+    function openModal(service) {
+      if (service) {
+        const b = svcBox.querySelector('[data-v="' + service + '"]');
+        if (b) pick(svcBox, b, 'service');
+      }
+      bk.step = service ? 1 : bk.step;
+      modal.style.display = 'flex'; refresh();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() { modal.style.display = 'none'; document.body.style.overflow = ''; }
+
+    backBtn.addEventListener('click', () => { if (bk.step > 0) { bk.step--; refresh(); } });
+    nextBtn.addEventListener('click', () => {
+      if (bk.step < 2) { bk.step++; refresh(); return; }
+      const name = document.getElementById('cf-name').value.trim();
+      const phone = document.getElementById('cf-phone').value.trim();
+      if (!name || !phone) { (name ? document.getElementById('cf-phone') : document.getElementById('cf-name')).focus(); return; }
+      const email = document.getElementById('cf-email').value.trim();
+      const msg = document.getElementById('cf-message').value.trim();
+      const text = encodeURIComponent(
+        'Hola, me gustaría agendar una cita.\n\n' +
+        'Servicio: ' + bk.service + '\n' +
+        'Visita: ' + bk.who + '\n' +
+        'Fecha: ' + fmtDate(bk.date) + '\n' +
+        'Hora: ' + bk.time + '\n\n' +
+        'Nombre: ' + name + '\n' +
+        'Teléfono: ' + phone + '\n' +
+        (email ? 'Email: ' + email + '\n' : '') +
+        (msg ? '\nMensaje: ' + msg : '')
+      );
+      window.open(whatsappUrl(text), '_blank');
+      closeModal();
+      document.getElementById('contact-form').reset();
+      bk.step = 0; bk.service = ''; bk.date = null; bk.time = '';
+      document.querySelectorAll('.chip#x,.day,.slot').forEach(x => x.setAttribute('aria-pressed', 'false'));
+      svcBox.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', 'false'));
+      document.getElementById('slots-wrap').innerHTML = '<p class="hint">Selecciona un día para ver los horarios disponibles.</p>';
+    });
+
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    function buildWaMessage(name, phone, email, message) {
+      return encodeURIComponent(
+        'Hola, me gustaría agendar una cita.\n\n' +
+        'Nombre: ' + name + '\n' +
+        'Teléfono: ' + phone + '\n' +
+        (email ? 'Email: ' + email + '\n' : '') +
+        '\nMensaje: ' + message
+      );
+    }
+
+    document.getElementById('footer-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = buildWaMessage(
+        document.getElementById('ff-name').value.trim(),
+        document.getElementById('ff-phone').value.trim() || 'No proporcionado',
+        document.getElementById('ff-email').value.trim(),
+        document.getElementById('ff-message').value.trim()
+      );
+      window.open(whatsappUrl(text), '_blank');
+      e.target.reset();
+    });
+  </script>
 
 </body>
+
 </html>
